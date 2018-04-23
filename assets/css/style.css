@@ -1,0 +1,65 @@
+body {
+    background-image: url("http://atextures.com/wp-content/uploads/2014/08/Fire-Flames-Background-21.jpg");
+    color: white;
+}
+
+p {
+    font-weight: 500;
+}
+
+h1 {
+    margin-top: 15px;
+    font-family: 'Metal Mania', cursive;
+    text-align: center;
+}
+
+.header img {
+    width: 100%;
+}
+
+.quote {
+    font-style: italic;
+    text-align: right;
+    padding-top: 50px;
+}
+
+.instructions {
+    text-align: right;
+    border: 3px solid white;
+    background: rgba(204, 39, 39, 0.66)
+}
+
+.imperative {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
