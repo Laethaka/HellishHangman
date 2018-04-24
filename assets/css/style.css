@@ -58,7 +58,7 @@ h1 {
     width: 100%;
 }
 
-.imperative {
+#imperative {
     -webkit-animation-name: blinker;
     -webkit-animation-duration: 1s;
     -webkit-animation-timing-function: linear;
