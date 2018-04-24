@@ -29,6 +29,10 @@ h1 {
     background: rgba(204, 39, 39, 0.66)
 }
 
+.firstInstructions {
+    text-align: center;
+}
+
 .imperative {
     -webkit-animation-name: blinker;
     -webkit-animation-duration: 1s;
