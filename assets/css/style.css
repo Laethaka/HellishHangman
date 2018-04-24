@@ -39,6 +39,14 @@ h1 {
     background: rgba(204, 39, 39, 0.66);
 }
 
+#hangmanLine {
+    margin-top: 10px;
+    font-size: 30px;
+    font-family: 'Metal Mania';
+    text-align: center;
+    letter-spacing: 5px;
+}
+
 .pentagram {
     border: 3px solid white;
     background: rgba(204, 39, 39, 0.66);
