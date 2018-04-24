@@ -19,18 +19,35 @@ h1 {
 
 .quote {
     font-style: italic;
-    text-align: right;
+    text-align: center;
     padding-top: 50px;
 }
 
 .instructions {
     text-align: right;
     border: 3px solid white;
-    background: rgba(204, 39, 39, 0.66)
+    background: rgba(204, 39, 39, 0.66);
+    margin-right: 10px;
 }
 
 .firstInstructions {
     text-align: center;
+}
+
+.word-display {
+    border: 3px solid white;
+    background: rgba(204, 39, 39, 0.66);
+}
+
+.pentagram {
+    border: 3px solid white;
+    background: rgba(204, 39, 39, 0.66);
+    margin-left: 10px;
+    
+}
+
+.pentagram img {
+    width: 100%;
 }
 
 .imperative {
