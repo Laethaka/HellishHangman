@@ -40,11 +40,15 @@ h1 {
 }
 
 .victory {
+    font-family: 'Metal Mania', cursive;
     visibility: hidden;
+    text-align: center;
 }
 
 .defeat {
+    font-family: 'Metal Mania', cursive;
     visibility: hidden;
+    text-align: center;
 }
 
 #hangmanLine {

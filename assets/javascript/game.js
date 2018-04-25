@@ -9,6 +9,8 @@ var soulsLost = 0;
 var guessesLeft = 10;
 var hiddenButton = document.getElementById("warningButton");
 var cancelKeypress = true;
+var victoryBanner = document.getElementById("victoryBanner");
+var defeatBanner = document.getElementById("defeatBanner");
 
 while (displayWord.length < secretWord.length) {
     displayWord += '-'
@@ -36,6 +38,8 @@ function gameReset() {
     document.getElementById("hangmanLine").textContent = displayWord;
     document.getElementById("displayGuesses").textContent = lettersGuessed;
     document.getElementById("guessesLeft").textContent = guessesLeft;
+    defeatBanner.style.visibility = "hidden";
+    victoryBanner.style.visibility = "hidden";
     document.addEventListener("keypress", gameplay)
 }
 
@@ -68,6 +72,7 @@ function gameplay() {
             lordsBanished += 1;
             document.getElementById("lordsBanished").textContent = lordsBanished;
             hiddenButton.style.visibility = "visible";
+            victoryBanner.style.visibility = "visible";
             document.removeEventListener('keypress', gameplay);
         }
     } else if (invalidKeys.includes(keyPressed)) {
@@ -87,6 +92,7 @@ function gameplay() {
             soulsLost += 1;
             document.getElementById("soulsLost").textContent = soulsLost;
             hiddenButton.style.visibility = "visible";
+            defeatBanner.style.visibility = "visible";
             document.removeEventListener('keypress', gameplay);
         }
     };
