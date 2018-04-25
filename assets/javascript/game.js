@@ -8,6 +8,7 @@ var lordsBanished = 0;
 var soulsLost = 0;
 var guessesLeft = 10;
 var hiddenButton = document.getElementById("warningButton");
+var cancelKeypress = true;
 
 while (displayWord.length < secretWord.length) {
     displayWord += '-'
@@ -22,6 +23,7 @@ String.prototype.replaceAt=function(index, replacement) {
 }
 
 function gameReset() {
+    hiddenButton.style.visibility = "hidden";
     guessesLeft = 10;
     lettersGuessed = [];
     secretWord = wordBank[Math.floor(Math.random()*17)];
@@ -39,7 +41,8 @@ function gameReset() {
 document.getElementById("hangmanLine").textContent = displayWord;
 
 //GAMEPLAY
-document.onkeypress = function(event) {
+document.addEventListener("keypress", function(event) {
+// document.onkeypress = function(event) {
     var keyPressed = String.fromCharCode(event.keyCode).toUpperCase();
     var hitIndices = [];
     if (secretWord.includes(keyPressed)) {
@@ -82,5 +85,7 @@ document.onkeypress = function(event) {
             hiddenButton.style.visibility = "visible";
         }
     };
-};
+});
+
+
 
