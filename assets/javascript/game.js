@@ -22,6 +22,7 @@ String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 }
 
+//GAME RESET
 function gameReset() {
     hiddenButton.style.visibility = "hidden";
     guessesLeft = 10;
@@ -35,14 +36,16 @@ function gameReset() {
     document.getElementById("hangmanLine").textContent = displayWord;
     document.getElementById("displayGuesses").textContent = lettersGuessed;
     document.getElementById("guessesLeft").textContent = guessesLeft;
+    document.addEventListener("keypress", gameplay)
 }
 
 //HANGMAN LINE SETUP
 document.getElementById("hangmanLine").textContent = displayWord;
 
 //GAMEPLAY
-document.addEventListener("keypress", function(event) {
+document.addEventListener("keypress", gameplay) 
 // document.onkeypress = function(event) {
+function gameplay() {
     var keyPressed = String.fromCharCode(event.keyCode).toUpperCase();
     var hitIndices = [];
     if (secretWord.includes(keyPressed)) {
@@ -65,6 +68,7 @@ document.addEventListener("keypress", function(event) {
             lordsBanished += 1;
             document.getElementById("lordsBanished").textContent = lordsBanished;
             hiddenButton.style.visibility = "visible";
+            document.removeEventListener('keypress', gameplay);
         }
     } else if (invalidKeys.includes(keyPressed)) {
         //KEY PRESSED ISN'T A LETTER
@@ -83,9 +87,10 @@ document.addEventListener("keypress", function(event) {
             soulsLost += 1;
             document.getElementById("soulsLost").textContent = soulsLost;
             hiddenButton.style.visibility = "visible";
+            document.removeEventListener('keypress', gameplay);
         }
     };
-});
+};
 
 
 
