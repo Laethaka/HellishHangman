@@ -1,6 +1,6 @@
 //VARIABLES SETUP
-var wordBank = ['MEPHISTO', 'AESHMA', 'BEELZEBUB', 'BELPHEGOR', 'LEVIATHAN', 'MOLOCH', 'PANZUZU', 'VASSAFOR', 'SATHANAS', 'DIABLO'];
-var secretWord = wordBank[Math.floor(Math.random()*10)];
+var wordBank = ['MEPHISTO', 'AESHMA', 'BEELZEBUB', 'BELPHEGOR', 'LEVIATHAN', 'MOLOCH', 'PANZUZU', 'VASSAFOR', 'SATHANAS', 'DIABLO', 'ABADDON', 'AHRIMAN', 'ASMODEUS', 'AZAZEL', 'BEHEMOTH', 'BARBATOS', 'BELIAL'];
+var secretWord = wordBank[Math.floor(Math.random()*17)];
 var displayWord = "";
 var invalidKeys = ['1','2','3','4','5','6','7','8','9','0',"'",'/','[',']',',', '.','-','=',';','`','\\'];
 var lettersGuessed = [];
@@ -10,18 +10,30 @@ var soulsLost = 0;
 while (displayWord.length < secretWord.length) {
     displayWord += '-'
 }
+document.getElementById("soulsLost").textContent = soulsLost;
+document.getElementById("lordsBanished").textContent = lordsBanished;
 
 //HELPERS
 String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 }
+
 function gameReset() {
     lettersGuessed = [];
-
+    secretWord = wordBank[Math.floor(Math.random()*17)];
+    displayWord = '';
+    while (displayWord.length < secretWord.length) {
+        displayWord += '-'
+    }
+    document.getElementById('pentagramStatus').src = ('assets/images/pentagram0.jpg');
+    document.getElementById("soulsLost").textContent = soulsLost;
+    document.getElementById("lordsBanished").textContent = lordsBanished;
+    document.getElementById("hangmanLine").textContent = displayWord;
+     document.querySelector("#displayGuesses").textContent = lettersGuessed;
 }
 
 //HANGMAN LINE SETUP
-document.getElementById("hangmanLine").innerHTML = displayWord;
+document.getElementById("hangmanLine").textContent = displayWord;
 
 //GAMEPLAY
 document.onkeypress = function(event) {
@@ -48,7 +60,8 @@ document.onkeypress = function(event) {
         document.getElementById("hangmanLine").innerHTML = displayWord;
         if (displayWord === secretWord) {
             //GAME WIN
-
+            lordsBanished += 1;
+            gameReset();
         }
     } else if (invalidKeys.includes(keyPressed)) {
         //KEY PRESSED ISN'T A LETTER
@@ -61,6 +74,8 @@ document.onkeypress = function(event) {
         }
         if (lettersGuessed.length == 10) {
             //GAME LOSS
+            soulsLost += 1;
+            gameReset();
         }
         document.querySelector("#displayGuesses").textContent = lettersGuessed;
     };
