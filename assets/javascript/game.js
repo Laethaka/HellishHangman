@@ -2,7 +2,10 @@
 var wordBank = ['MEPHISTO', 'AESHMA', 'BEELZEBUB', 'BELPHEGOR', 'LEVIATHAN', 'MOLOCH', 'PANZUZU', 'VASSAFOR', 'SATHANAS', 'DIABLO'];
 var secretWord = wordBank[Math.floor(Math.random()*10)];
 var displayWord = "";
-var invalidKeys = ['1','2','3','4','5','6','7','8','9','0',"'",'/','[',']',',', '.','-','=',';','`']
+var invalidKeys = ['1','2','3','4','5','6','7','8','9','0',"'",'/','[',']',',', '.','-','=',';','`','\\'];
+var lettersGuessed = [];
+var lordsBanished = 0;
+var soulsLost = 0;
 
 while (displayWord.length < secretWord.length) {
     displayWord += '-'
@@ -12,9 +15,9 @@ while (displayWord.length < secretWord.length) {
 String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 }
-function imgProgress(imgSrc) {
-    let currentJpg = imgSrc[23];
-    imgSrc.toString().replaceAt(23, (currentJpg+1).toString())
+function gameReset() {
+    lettersGuessed = [];
+
 }
 
 //HANGMAN LINE SETUP
@@ -43,12 +46,23 @@ document.onkeypress = function(event) {
             }
         };
         document.getElementById("hangmanLine").innerHTML = displayWord;
+        if (displayWord === secretWord) {
+            //GAME WIN
+
+        }
     } else if (invalidKeys.includes(keyPressed)) {
         //KEY PRESSED ISN'T A LETTER
         alert('The Lords of Hell do not concern themselves with numbers and punctuation.');
     } else {
         //KEY PRESSED IS A MISS
-        document.getElementById('pentagramStatus').src='assets/images/pentagram1.jpg'
+        if (!lettersGuessed.includes(keyPressed)) {
+            lettersGuessed.push(keyPressed);
+            document.getElementById('pentagramStatus').src = ('assets/images/pentagram'+ lettersGuessed.length + '.jpg');
+        }
+        if (lettersGuessed.length == 10) {
+            //GAME LOSS
+        }
+        document.querySelector("#displayGuesses").textContent = lettersGuessed;
     };
 };
 

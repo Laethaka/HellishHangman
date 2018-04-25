@@ -58,6 +58,22 @@ h1 {
     width: 100%;
 }
 
+.guessbox {
+    border: 3px solid white;
+    background: rgba(204, 39, 39, 0.66);
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+#displayGuesses {
+    letter-spacing: 2px;
+}
+
+.hiddenVid {
+    display: none;
+}
+
 #imperative {
     -webkit-animation-name: blinker;
     -webkit-animation-duration: 1s;
