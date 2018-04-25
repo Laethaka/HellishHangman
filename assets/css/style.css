@@ -87,6 +87,10 @@ h1 {
     display: none;
 }
 
+.btn-warning {
+    visibility: hidden;
+}
+
 #imperative {
     -webkit-animation-name: blinker;
     -webkit-animation-duration: 1s;

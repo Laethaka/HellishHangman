@@ -7,6 +7,7 @@ var lettersGuessed = [];
 var lordsBanished = 0;
 var soulsLost = 0;
 var guessesLeft = 10;
+var hiddenButton = document.getElementById("warningButton");
 
 while (displayWord.length < secretWord.length) {
     displayWord += '-'
@@ -60,7 +61,7 @@ document.onkeypress = function(event) {
             //GAME WIN
             lordsBanished += 1;
             document.getElementById("lordsBanished").textContent = lordsBanished;
-            gameReset();
+            hiddenButton.style.visibility = "visible";
         }
     } else if (invalidKeys.includes(keyPressed)) {
         //KEY PRESSED ISN'T A LETTER
@@ -78,7 +79,7 @@ document.onkeypress = function(event) {
             //GAME LOSS
             soulsLost += 1;
             document.getElementById("soulsLost").textContent = soulsLost;
-            gameReset();
+            hiddenButton.style.visibility = "visible";
         }
     };
 };
