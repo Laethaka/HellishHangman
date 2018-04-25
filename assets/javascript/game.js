@@ -6,12 +6,14 @@ var invalidKeys = ['1','2','3','4','5','6','7','8','9','0',"'",'/','[',']',',', 
 var lettersGuessed = [];
 var lordsBanished = 0;
 var soulsLost = 0;
+var guessesLeft = 10;
 
 while (displayWord.length < secretWord.length) {
     displayWord += '-'
 }
 document.getElementById("soulsLost").textContent = soulsLost;
 document.getElementById("lordsBanished").textContent = lordsBanished;
+document.getElementById("guessesLeft").textContent = guessesLeft;
 
 //HELPERS
 String.prototype.replaceAt=function(index, replacement) {
@@ -19,6 +21,7 @@ String.prototype.replaceAt=function(index, replacement) {
 }
 
 function gameReset() {
+    guessesLeft = 10;
     lettersGuessed = [];
     secretWord = wordBank[Math.floor(Math.random()*17)];
     displayWord = '';
@@ -26,10 +29,9 @@ function gameReset() {
         displayWord += '-'
     }
     document.getElementById('pentagramStatus').src = ('assets/images/pentagram0.jpg');
-    document.getElementById("soulsLost").textContent = soulsLost;
-    document.getElementById("lordsBanished").textContent = lordsBanished;
     document.getElementById("hangmanLine").textContent = displayWord;
-     document.querySelector("#displayGuesses").textContent = lettersGuessed;
+    document.getElementById("displayGuesses").textContent = lettersGuessed;
+    document.getElementById("guessesLeft").textContent = guessesLeft;
 }
 
 //HANGMAN LINE SETUP
@@ -41,11 +43,7 @@ document.onkeypress = function(event) {
     var hitIndices = [];
     if (secretWord.includes(keyPressed)) {
         //KEY PRESSED IS A HIT
-                                    // BROKEN; ONLY FIRST HIT GETS REVEALED
-                                    // hitIndex = secretWord.indexOf(keyPressed);
-                                    // displayWord = displayWord.replaceAt(hitIndex, keyPressed);
-                                    // displayWord = displayWord.replaceAt(hitIndex, keyPressed);
-                                    // displayWord = displayWord.replaceAt(hitIndex, keyPressed);
+                                   
         for(let i=0; i<secretWord.length ; i++) {
             if (secretWord[i] === keyPressed) hitIndices.push(i);
         };
@@ -61,6 +59,7 @@ document.onkeypress = function(event) {
         if (displayWord === secretWord) {
             //GAME WIN
             lordsBanished += 1;
+            document.getElementById("lordsBanished").textContent = lordsBanished;
             gameReset();
         }
     } else if (invalidKeys.includes(keyPressed)) {
@@ -70,14 +69,17 @@ document.onkeypress = function(event) {
         //KEY PRESSED IS A MISS
         if (!lettersGuessed.includes(keyPressed)) {
             lettersGuessed.push(keyPressed);
+            document.getElementById("displayGuesses").textContent = lettersGuessed;
             document.getElementById('pentagramStatus').src = ('assets/images/pentagram'+ lettersGuessed.length + '.jpg');
+            guessesLeft--;
+            document.getElementById("guessesLeft").textContent = guessesLeft;
         }
         if (lettersGuessed.length == 10) {
             //GAME LOSS
             soulsLost += 1;
+            document.getElementById("soulsLost").textContent = soulsLost;
             gameReset();
         }
-        document.querySelector("#displayGuesses").textContent = lettersGuessed;
     };
 };
 
