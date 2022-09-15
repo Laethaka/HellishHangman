@@ -1,2 +1,1 @@
-# Word-Guess-Game
-homework 3
+Hellish Hangman
